@@ -1,65 +1,120 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useMemo } from "react";
+import Breadcrumb from "@/components/Breadcrumb";
+import SearchBar from "@/components/SearchBar";
+import ServiceCard, { Service } from "@/components/ServiceCard";
+import Cart from "@/components/Cart";
+
+// Sample data matching the Figma design
+const servicesData: Service[] = [
+  { id: "1", name: "Taglio e Shampoo", duration: "30 minuti", price: 18 },
+  { id: "2", name: "Taglio, shampoo e barba", duration: "45 minuti", price: 10 },
+  { id: "3", name: "Barba modellata", duration: "15 minuti", price: 12 },
+  { id: "4", name: "Barba e sopracciglia", duration: "20 minuti", price: 15 },
+  { id: "5", name: "Barba a lama", duration: "10 minuti", price: 22 },
+  { id: "6", name: "Colore barba", duration: "1 ora", price: 40 },
+  { id: "7", name: "Colore barba", duration: "1 ora", price: 40 },
+];
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedServiceIds, setSelectedServiceIds] = useState<string[]>(["1"]); // First one selected by default
+
+  const breadcrumbItems = [
+    { label: "Lista dei servizi", active: true },
+    { label: "Scegli collaboratore", active: false },
+    { label: "Scegli data e ora", active: false },
+    { label: "Conferma", active: false },
+  ];
+
+  // Filter services based on search query
+  const filteredServices = useMemo(() => {
+    if (!searchQuery.trim()) return servicesData;
+    const query = searchQuery.toLowerCase();
+    return servicesData.filter(
+      (service) =>
+        service.name.toLowerCase().includes(query) ||
+        service.duration.toLowerCase().includes(query)
+    );
+  }, [searchQuery]);
+
+  // Get selected services for cart
+  const selectedServices = useMemo(() => {
+    return servicesData.filter((service) =>
+      selectedServiceIds.includes(service.id)
+    );
+  }, [selectedServiceIds]);
+
+  // Toggle service selection
+  const handleServiceSelect = (service: Service) => {
+    setSelectedServiceIds((prev) => {
+      if (prev.includes(service.id)) {
+        return prev.filter((id) => id !== service.id);
+      }
+      return [...prev, service.id];
+    });
+  };
+
+  const handleContinue = () => {
+    console.log("Continue to next step with services:", selectedServices);
+    // Navigate to next step
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="w-full min-h-screen bg-slate-50">
+      {/* Main Container with responsive padding */}
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-28 py-6 sm:py-8 lg:py-10">
+        {/* Breadcrumb Section */}
+        <Breadcrumb items={breadcrumbItems} />
+
+        {/* Main Content - Two Column Layout */}
+        <div className="mt-6 sm:mt-8 lg:mt-10 flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-16">
+          {/* Left Section - Services List */}
+          <div className="flex-1 max-w-full lg:max-w-[717px]">
+            {/* Title */}
+            <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold leading-tight lg:leading-[41px] tracking-[-0.01em] text-[#191E3B] mb-2">
+              Lista dei servizi
+            </h1>
+
+            {/* Description */}
+            <p className="text-base sm:text-[17px] font-normal leading-[140%] tracking-[-0.01em] text-[#191E3B] mb-6 sm:mb-8">
+              Sfoglia la lista dei servizi disponibili
+            </p>
+
+            {/* Search Bar */}
+            <div className="mb-5 sm:mb-6">
+              <SearchBar
+                value={searchQuery}
+                onChange={setSearchQuery}
+                placeholder="Cerca servizi..."
+              />
+            </div>
+
+            {/* Service Cards List */}
+            <div className="flex flex-col gap-4 sm:gap-5">
+              {filteredServices.map((service) => (
+                <ServiceCard
+                  key={service.id}
+                  service={service}
+                  isSelected={selectedServiceIds.includes(service.id)}
+                  onSelect={handleServiceSelect}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Right Section - Cart (Sticky on desktop) */}
+          <div className="w-full lg:w-auto lg:shrink-0">
+            <div className="lg:sticky lg:top-6">
+              <Cart
+                selectedServices={selectedServices}
+                onContinue={handleContinue}
+              />
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
