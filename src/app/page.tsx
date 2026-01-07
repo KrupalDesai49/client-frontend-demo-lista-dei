@@ -64,26 +64,26 @@ export default function Home() {
   return (
     <div className="w-full min-h-screen bg-slate-50">
       {/* Main Container with responsive padding */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-28 py-6 sm:py-8 lg:py-10">
+      <div className="max-w-[1440px] mx-auto px-3 sm:px-4 md:px-6 lg:px-12 xl:px-20 py-4 sm:py-6 lg:py-8">
         {/* Breadcrumb Section */}
         <Breadcrumb items={breadcrumbItems} />
 
         {/* Main Content - Two Column Layout */}
-        <div className="mt-6 sm:mt-8 lg:mt-10 flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-16">
+        <div className="mt-4 sm:mt-6 lg:mt-8 flex flex-col lg:flex-row gap-4 lg:gap-6 xl:gap-12">
           {/* Left Section - Services List */}
           <div className="flex-1 max-w-full lg:max-w-[717px]">
             {/* Title */}
-            <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-bold leading-tight lg:leading-[41px] tracking-[-0.01em] text-[#191E3B] mb-2">
+            <h1 className="text-xl sm:text-2xl lg:text-[28px] font-bold leading-tight lg:leading-[34px] tracking-[-0.01em] text-[#191E3B] mb-1.5">
               Lista dei servizi
             </h1>
 
             {/* Description */}
-            <p className="text-base sm:text-[17px] font-normal leading-[140%] tracking-[-0.01em] text-[#191E3B] mb-6 sm:mb-8">
+            <p className="text-sm sm:text-[15px] font-normal leading-[140%] tracking-[-0.01em] text-[#191E3B] mb-4 sm:mb-6">
               Sfoglia la lista dei servizi disponibili
             </p>
 
             {/* Search Bar */}
-            <div className="mb-5 sm:mb-6">
+            <div className="mb-4 sm:mb-5">
               <SearchBar
                 value={searchQuery}
                 onChange={setSearchQuery}
@@ -92,7 +92,7 @@ export default function Home() {
             </div>
 
             {/* Service Cards List */}
-            <div className="flex flex-col gap-4 sm:gap-5">
+            <div className="flex flex-col gap-3 sm:gap-4">
               {filteredServices.map((service) => (
                 <ServiceCard
                   key={service.id}
@@ -106,7 +106,7 @@ export default function Home() {
 
           {/* Right Section - Cart (Sticky on desktop) */}
           <div className="w-full lg:w-auto lg:shrink-0">
-            <div className="lg:sticky lg:top-6">
+            <div className="lg:sticky lg:top-4">
               <Cart
                 selectedServices={selectedServices}
                 onContinue={handleContinue}

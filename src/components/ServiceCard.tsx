@@ -17,22 +17,22 @@ interface ServiceCardProps {
 
 const TickSquareIcon = () => (
   <svg
-    width="28"
-    height="28"
-    viewBox="0 0 28 28"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect
-      x="2.33"
-      y="2.33"
-      width="23.33"
-      height="23.33"
-      rx="6"
+      x="2"
+      y="2"
+      width="20"
+      height="20"
+      rx="5"
       fill="#1668E3"
     />
     <path
-      d="M9 14L12.5 17.5L19 11"
+      d="M8 12L10.8 15L16 9.5"
       stroke="white"
       strokeWidth="2"
       strokeLinecap="round"
@@ -43,22 +43,22 @@ const TickSquareIcon = () => (
 
 const AddSquareIcon = () => (
   <svg
-    width="28"
-    height="28"
-    viewBox="0 0 28 28"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect
-      x="2.33"
-      y="2.33"
-      width="23.33"
-      height="23.33"
-      rx="6"
+      x="2"
+      y="2"
+      width="20"
+      height="20"
+      rx="5"
       fill="#D3D3D3"
     />
     <path
-      d="M14 9V19M9 14H19"
+      d="M12 8V16M8 12H16"
       stroke="white"
       strokeWidth="2"
       strokeLinecap="round"
@@ -76,7 +76,7 @@ export default function ServiceCard({
     <div
       onClick={() => onSelect(service)}
       className={`
-        flex items-center justify-between w-full max-w-[717px] min-h-[76px] sm:min-h-[84px] px-3 sm:px-4 py-3 sm:py-0 bg-white rounded-[18px] sm:rounded-[22px] cursor-pointer transition-all
+        flex items-center justify-between w-full max-w-[717px] min-h-[64px] sm:min-h-[72px] px-2.5 sm:px-3.5 py-2.5 sm:py-0 bg-white rounded-[14px] sm:rounded-[18px] cursor-pointer transition-all
         ${isSelected ? "border-2 border-[#1668E3]" : "border border-[#E5E7EB]"}
       `}
       style={{
@@ -86,21 +86,21 @@ export default function ServiceCard({
       {/* Left Section: Service Info */}
       <div className="flex flex-col gap-0.5">
         {/* Service Name */}
-        <span className="text-base sm:text-lg font-medium leading-6 text-[#191E3B]">
+        <span className="text-sm sm:text-base font-medium leading-5 text-[#191E3B]">
           {service.name}
         </span>
 
         {/* Duration */}
-        <span className="text-sm font-normal leading-6 text-[#5A6474]">
+        <span className="text-xs font-normal leading-5 text-[#5A6474]">
           {service.duration}
         </span>
       </div>
 
       {/* Right Section: Price and Checkbox */}
-      <div className="flex items-center gap-2 sm:gap-4">
+      <div className="flex items-center gap-2 sm:gap-3">
         {/* Price */}
         <span
-          className="text-lg sm:text-xl font-semibold leading-7 text-[#191E3B]"
+          className="text-base sm:text-lg font-[500] leading-6 text-[#191E3B]"
           style={{ fontFamily: "'SF Pro', Inter, sans-serif" }}
         >
           €{service.price}

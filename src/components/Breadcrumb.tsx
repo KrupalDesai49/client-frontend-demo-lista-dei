@@ -13,14 +13,14 @@ interface BreadcrumbProps {
 
 const ChevronRight = ({ color = "#898B97" }: { color?: string }) => (
   <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M6 12L10 8L6 4"
+      d="M5 11L9 7L5 3"
       stroke={color}
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -42,16 +42,16 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
   return (
     <div className="w-full  ">
       {/* Breadcrumb Navigation - Scrollable on mobile */}
-      <div className="flex flex-row items-center gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-hide">
+      <div className="flex flex-row items-center gap-1.5 sm:gap-2.5 overflow-x-auto pb-1.5 scrollbar-hide">
         {items.map((item, index) => (
           <div
             key={index}
             ref={item.active ? activeRef : null}
-            className="flex flex-row items-center gap-1.5 sm:gap-2 shrink-0"
+            className="flex flex-row items-center gap-1 sm:gap-1.5 shrink-0"
           >
             {/* Label */}
             <span
-              className={`font-medium text-sm sm:text-base leading-6 whitespace-nowrap ${
+              className={`font-medium text-xs sm:text-sm leading-5 whitespace-nowrap ${
                 item.active ? "text-[#1668E3]" : "text-[#898B97]"
               }`}
             >
@@ -65,14 +65,14 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
       </div>
 
       {/* Bottom Line Container */}
-      <div className="relative mt-4 w-full">
+      <div className="relative mt-3 w-full">
         {/* Full gray line */}
         <div
           className="w-full"
           style={{
-            height: "5px",
+            height: "4px",
             backgroundColor: "rgba(137, 139, 151, 0.06)",
-            borderRadius: "2.5px",
+            borderRadius: "2px",
           }}
         />
         {/* Active blue line overlay */}
@@ -80,9 +80,9 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
           className="absolute top-0 left-0"
           style={{
             width: `${activeWidth}px`,
-            height: "5px",
+            height: "4px",
             backgroundColor: "#1668E3",
-            borderRadius: "2.5px",
+            borderRadius: "2px",
           }}
         />
       </div>

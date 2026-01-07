@@ -47,36 +47,36 @@ export default function Cart({
 
   return (
     <div
-      className="w-full max-w-[447px] bg-white border border-[#E5E7EB] rounded-[18px] sm:rounded-[22px] p-4 sm:p-6"
+      className="w-full max-w-[400px] bg-white border border-[#E5E7EB] rounded-[14px] sm:rounded-[18px] p-3 sm:p-5"
       style={{
         boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.05)",
       }}
     >
       {/* Cart Title */}
-      <h2 className="text-xl sm:text-2xl font-bold leading-[29px] tracking-[-0.01em] text-[#191E3B] mb-4 sm:mb-6">
+      <h2 className="text-lg sm:text-xl font-bold leading-[26px] tracking-[-0.01em] text-[#191E3B] mb-3 sm:mb-5">
         Carrello
       </h2>
 
       {/* Salon Info Section */}
-      <div className="flex items-start gap-3 sm:gap-4 mb-6 sm:mb-8">
+      <div className="flex items-start gap-2.5 sm:gap-3 mb-4 sm:mb-6">
         {/* Salon Image */}
         <img
           src={salonImage}
           alt={salonName}
-          className="w-[80px] h-[80px] sm:w-[120px] sm:h-[120px] rounded-[12px] sm:rounded-[17px] object-cover shrink-0"
+          className="w-[64px] h-[64px] sm:w-[100px] sm:h-[100px] rounded-[10px] sm:rounded-[14px] object-cover shrink-0"
         />
 
         {/* Salon Details */}
-        <div className="flex flex-col gap-2 pt-2">
+        <div className="flex flex-col gap-1.5 pt-1.5">
           {/* Salon Name */}
-          <h3 className="text-xl font-bold leading-6 tracking-[-0.01em] text-[#191E3B]">
+          <h3 className="text-lg font-bold leading-5 tracking-[-0.01em] text-[#191E3B]">
             {salonName}
           </h3>
 
           {/* Address */}
           <div className="flex items-center gap-1">
             <MapPinIcon />
-            <span className="text-sm font-normal leading-[17px] tracking-[-0.01em] text-[#676767]">
+            <span className="text-xs font-normal leading-[15px] tracking-[-0.01em] text-[#676767]">
               {salonAddress}
             </span>
           </div>
@@ -84,13 +84,13 @@ export default function Cart({
       </div>
 
       {/* Selected Services */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
         {selectedServices.map((service) => (
           <div key={service.id} className="flex justify-between items-center">
-            <span className="text-lg font-semibold leading-[22px] tracking-[-0.01em] text-[#191E3B]">
+            <span className="text-base font-semibold leading-[20px] tracking-[-0.01em] text-[#191E3B]">
               {service.name}
             </span>
-            <span className="text-lg font-semibold leading-[22px] tracking-[-0.01em] text-[#191E3B]">
+            <span className="text-base font-semibold leading-[20px] tracking-[-0.01em] text-[#191E3B]">
               €{service.price.toFixed(2)}
             </span>
           </div>
@@ -98,14 +98,14 @@ export default function Cart({
       </div>
 
       {/* Divider */}
-      <div className="border-b border-[#E5E7EB] my-6" />
+      <div className="border-b border-[#E5E7EB] my-4" />
 
       {/* Total */}
-      <div className="flex justify-between items-center mb-8">
-        <span className="text-lg font-semibold leading-[22px] tracking-[-0.01em] text-[#191E3B]">
+      <div className="flex justify-between items-center mb-6">
+        <span className="text-base font-semibold leading-[20px] tracking-[-0.01em] text-[#191E3B]">
           Totale
         </span>
-        <span className="text-lg font-semibold leading-[22px] tracking-[-0.01em] text-[#1668E3]">
+        <span className="text-base font-semibold leading-[20px] tracking-[-0.01em] text-[#1668E3]">
           €{totalPrice.toFixed(2)}
         </span>
       </div>
@@ -113,9 +113,9 @@ export default function Cart({
       {/* Continue Button */}
       <button
         onClick={onContinue}
-        className="w-full h-12 bg-[#1668E3] rounded-[45px] flex items-center justify-center hover:bg-[#1254B8] transition-colors"
+        className="w-full h-10 bg-[#1668E3] rounded-[40px] flex items-center justify-center hover:bg-[#1254B8] transition-colors"
       >
-        <span className="text-base font-semibold leading-[19px] tracking-[-0.01em] text-white">
+        <span className="text-sm font-semibold leading-[17px] tracking-[-0.01em] text-white">
           Continua
         </span>
       </button>

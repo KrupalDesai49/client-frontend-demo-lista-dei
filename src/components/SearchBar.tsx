@@ -10,22 +10,22 @@ interface SearchBarProps {
 
 const MagnifyingGlassIcon = () => (
   <svg
-    width="22"
-    height="22"
-    viewBox="0 0 22 22"
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <circle
-      cx="10"
-      cy="10"
-      r="7"
+      cx="8"
+      cy="8"
+      r="5.5"
       stroke="#676767"
       strokeWidth="1.5"
       fill="none"
     />
     <path
-      d="M15 15L20 20"
+      d="M12 12L16 16"
       stroke="#676767"
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -40,7 +40,7 @@ export default function SearchBar({
 }: SearchBarProps) {
   return (
     <div
-      className="flex items-center gap-3 w-full max-w-[637px] h-14 px-6 bg-white border border-[#E5E7EB] rounded-[36px]"
+      className="flex items-center gap-2.5 w-full max-w-[637px] h-12 px-5 bg-white border border-[#E5E7EB] rounded-[32px]"
       style={{
         boxShadow: "0px 1px 2px rgba(0, 0, 0, 0.05)",
       }}
@@ -54,7 +54,7 @@ export default function SearchBar({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="flex-1 text-[17px] leading-[120%] tracking-[-0.01em] text-[#191E3B] placeholder:text-[#676767] bg-transparent outline-none font-normal"
+        className="flex-1 text-[15px] leading-[120%] tracking-[-0.01em] text-[#191E3B] placeholder:text-[#676767] bg-transparent outline-none font-normal"
       />
     </div>
   );
